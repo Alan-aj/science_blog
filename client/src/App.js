@@ -1,15 +1,20 @@
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/login";
 import Home from "./components/home";
 import Admin from "./components/admin";
 
 function App() {
+  const [loginId, setLoginid] = useState(null)
+  React.useEffect(() => {
+    setLoginid(localStorage.getItem("loginId"))
+  }, [loginId])
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/admin' element={<Admin />} />
+        <Route exact path='/' element={<Home />} />
+        <Route path='/login' element={<Login setLoginid={setLoginid} />} />
+        <Route path='/admin' element={loginId ? <Admin setLoginid={setLoginid} /> : <Login setLoginid={setLoginid} />} />
       </Routes>
     </BrowserRouter>
   );

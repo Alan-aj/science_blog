@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Card from "./card";
+import Card from "./adminCard";
 
 function Admin() {
     const navigate = useNavigate();
