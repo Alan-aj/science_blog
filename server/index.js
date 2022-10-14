@@ -25,7 +25,26 @@ app.post("/login", (req, res) => {
     })
 })
 
-app.get("/", (req,res) => {
+app.post("/create", (req, res) => {
+    const { name } = req.body
+    const createData = req.body
+    Experiment.findOne({ name: name }, (err, data) => {
+        if (data) {
+            res.send({ message: "Experiment already exits" })
+        } else {
+            const experiment = new Experiment(createData)
+            experiment.save(err => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.send({ message: "Experiment added successfully" })
+                }
+            })
+        }
+    })
+})
+
+app.get("/", (req, res) => {
     res.send("Hello world")
 })
 
