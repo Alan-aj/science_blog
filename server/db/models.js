@@ -21,5 +21,17 @@ const adminSchema = new mongoose.Schema({
     password: String
 })
 
+const experimentSchema = new mongoose.Schema({
+    name: String,
+    description: String,
+    level: String,
+    subject: String,
+    image: String,
+    materials: [{ item: String, quantity: String }],
+    precautions: String,
+    instructions: [{step_no: String, step_image: String, step_description: String}]
+})
+
 // models
 export const Admin = new mongoose.model("Admin", adminSchema)
+export const Experiment = new mongoose.model("Experiment", experimentSchema)
