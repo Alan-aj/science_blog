@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import "./db/models.js";
-import mongoose from "mongoose";
 import { Admin, Experiment } from "./db/models.js";
 
 const app = express()
@@ -86,7 +85,7 @@ app.post("/update", (req, res) => {
     Experiment.findByIdAndUpdate(id, {$set: updateData},
         function (err, docs) {
             if (docs) {
-                res.send({ message: "Product updated" })
+                res.send({ message: "Experiment updated" })
             }
             else {
                 res.send({ message: "Update failed" })
@@ -119,9 +118,6 @@ app.post("/filter", (req, res) => {
     })
 })
 
-app.get("/", (req, res) => {
-    res.send("Hello world")
-})
 
 app.listen(9003, () => {
     console.log("Server started at port 9003")
