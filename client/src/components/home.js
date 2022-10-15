@@ -1,10 +1,8 @@
 import React from "react"
-import { useNavigate } from "react-router-dom";
 import Card from "./homeCard";
 import axios from "axios"
 
 function Home() {
-    const navigate = useNavigate();
     const [post, setPost] = React.useState([]);
     React.useEffect(() => {
         axios.get("http://localhost:9003/experiment").then((response) => {

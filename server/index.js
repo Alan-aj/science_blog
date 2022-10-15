@@ -56,6 +56,45 @@ app.get("/experiment", (req, res) => {
 
 })
 
+app.post("/delete", (req, res) => {
+    const { id } = req.body
+    Experiment.deleteOne({ _id: id })
+        .then(function () {
+            res.send({ message: "Experiment deleted" })
+        }).catch(function (error) {
+            console.log(error);
+        })
+})
+
+app.post("/experimentOne", (req, res) => {
+    const { id } = req.body
+    Experiment.findOne({ _id: id }, function (err, docs) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(docs)
+        }
+    })
+})
+
+app.post("/update", (req, res) => {
+    const updateData = req.body.data
+    // console.log(updateData)
+    const { id } = req.body
+    // console.log(id)
+    Experiment.findByIdAndUpdate(id, {$set: updateData},
+        function (err, docs) {
+            if (docs) {
+                res.send({ message: "Product updated" })
+            }
+            else {
+                res.send({ message: "Update failed" })
+                console.log(err)
+            }
+        });
+})
+
 app.get("/", (req, res) => {
     res.send("Hello world")
 })

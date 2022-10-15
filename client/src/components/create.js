@@ -60,6 +60,7 @@ function Create() {
         const { name, description, level, subject, image, precautions } = data
         data.materials = materialValue
         data.instructions = stepValue
+        // console.log(data)
         if (name && description && level && subject && image && precautions) {
             axios.post("http://localhost:9003/create", data)
                 .then(res => {
@@ -213,7 +214,7 @@ function Create() {
                         </div>
 
                         <div className="flex items-center justify-center">
-                            <button onClick={dataSubmit} className="px-6 py-2 mt-4 text-white bg-cyan-700 rounded-lg hover:bg-cyan-900">Submit</button>
+                            <button type="submit" onClick={dataSubmit} className="px-6 py-2 mt-4 text-white bg-cyan-700 rounded-lg hover:bg-cyan-900">Submit</button>
                         </div>
                     </div>
                 </div>
