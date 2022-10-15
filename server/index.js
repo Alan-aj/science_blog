@@ -44,6 +44,18 @@ app.post("/create", (req, res) => {
     })
 })
 
+app.get("/experiment", (req, res) => {
+    Experiment.find({}, function (err, data) {
+        if (data) {
+            // console.log(data)
+            res.send(data)
+        } else {
+            console.log(err)
+        }
+    })
+
+})
+
 app.get("/", (req, res) => {
     res.send("Hello world")
 })
