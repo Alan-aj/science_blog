@@ -5,6 +5,7 @@ import Home from "./components/home";
 import Admin from "./components/admin";
 import Create from "./components/create";
 import Update from "./components/update";
+import View from "./components/view";
 
 function App() {
   const [loginId, setLoginid] = useState(null)
@@ -20,6 +21,7 @@ function App() {
         <Route path='/admin' element={loginId ? <Admin setLoginid={setLoginid} /> : <Login setLoginid={setLoginid} />} />
         <Route path='/create' element={<Create />} />
         <Route path='/update/:id' element={<Update />} />
+        <Route path='/view/:id' element={<View />} />
       </Routes>
     </BrowserRouter>
   );

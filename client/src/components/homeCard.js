@@ -6,6 +6,7 @@ function Card(props) {
     const id = props.data._id
     const title = props.data.name
     const body = props.data.description
+    const subject = props.data.subject
 
     return (
         <div className="bg-white shadow-md rounded-lg max-w-xs mb-5 hover:shadow-2xl m-3">
@@ -23,7 +24,7 @@ function Card(props) {
                 <button onClick={() => navigate(`/view/${id}`)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2 text-center inline-flex items-center">
                     Read more
                 </button>
-                <div className="inline float-right p-3 pt-1 text-cyan-600">Tech</div>
+                <div className="inline float-right p-3 pt-1 text-green-600">{subject}</div>
             </div>
         </div>
     );

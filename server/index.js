@@ -95,6 +95,18 @@ app.post("/update", (req, res) => {
         });
 })
 
+app.post("/view", (req, res) => {
+    const { id } = req.body
+    Experiment.findOne({ _id: id }, function (err, docs) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.send(docs)
+        }
+    })
+})
+
 app.get("/", (req, res) => {
     res.send("Hello world")
 })
