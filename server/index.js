@@ -107,6 +107,18 @@ app.post("/view", (req, res) => {
     })
 })
 
+app.post("/filter", (req, res) => {
+    const { subject } = req.body
+    Experiment.find({ subject: subject }, function (err, data) {
+        if (data) {
+            // console.log(data)
+            res.send(data)
+        } else {
+            console.log(err)
+        }
+    })
+})
+
 app.get("/", (req, res) => {
     res.send("Hello world")
 })
