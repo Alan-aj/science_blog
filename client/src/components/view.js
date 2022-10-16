@@ -1,6 +1,7 @@
 import React from "react"
 import axios from "axios"
 import { useParams } from "react-router-dom";
+import { URL } from "./url";
 
 function View() {
     const { id } = useParams();
@@ -16,7 +17,7 @@ function View() {
     const [stepValue, setStepValue] = React.useState([{ step_no: "", step_image: "", step_description: "" }])
 
     React.useEffect(() => {
-        axios.post("http://localhost:9003/view", { id: id }).then((response) => {
+        axios.post(`${URL}/view`, { id: id }).then((response) => {
             // console.log(response.data)
             if (response.data) {
                 setData({ name: response.data.name, description: response.data.description, level: response.data.level, subject: response.data.subject, image: response.data.image, precautions: response.data.precautions })
@@ -32,7 +33,7 @@ function View() {
                 {data.name}
             </div>
             <div className=" flex flex-col p-3 mx-5 items-center justify-center justify-items-center">
-                <div className=" w-11/12 md:w-3/5 lg:w-3/4 bg-white shadow-md rounded-lg  mb-5  ">
+                <div className=" w-full md:w-3/5 lg:w-3/4 bg-white shadow-md rounded-lg  mb-5  ">
                     <div className="flex justify-center">
                         <img
                             className="rounded-t-lg  object-contain h-80 m-2 md:mt-6 lg:mt-6"
@@ -47,7 +48,7 @@ function View() {
 
                     </div>
                 </div>
-                <div className=" w-11/12 md:w-3/5 lg:w-3/4 bg-white shadow-md rounded-lg  mb-5 p-5 lg:p-10 md:p-10 ">
+                <div className=" w-full md:w-3/5 lg:w-3/4 bg-white shadow-md rounded-lg  mb-5 p-5 lg:p-10 md:p-10 ">
                     <div>
                         <h5 className="inline-block text-gray-900 font-bold text-2xl tracking-tight m-2">Difficulty level: </h5>
                         <h5 className="inline-block text-gray-900 text-xl tracking-tight m-2">{data.level} / 5 </h5>
@@ -94,7 +95,7 @@ function View() {
                         <h5 className=" text-gray-900 tracking-tight m-2">{data.precautions}</h5>
                     </div>
                 </div>
-                <div className=" w-11/12 md:w-3/5 lg:w-3/4 bg-white shadow-md rounded-lg  mb-5 p-5 lg:p-10 md:p-10 ">
+                <div className=" w-full md:w-3/5 lg:w-3/4 bg-white shadow-md rounded-lg  mb-5 p-5 lg:p-10 md:p-10 ">
                     <div>
                         <h5 className=" text-gray-900 font-bold text-2xl tracking-tight m-2">Instructions: </h5>
                         <div className=" flex flex-col items-center p-3">

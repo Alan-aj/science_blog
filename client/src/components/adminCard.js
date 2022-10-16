@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
+import { URL } from "./url";
 
 function Card(props) {
     const navigate = useNavigate();
@@ -9,7 +10,7 @@ function Card(props) {
     const body = props.data.description
 
     const deleteExperiment = () => {
-        axios.post("http://localhost:9003/delete", { id: id })
+        axios.post(`${URL}/delete`, { id: id })
             .then(res => {
                 alert(res.data.message)
                 props.setDel(false)

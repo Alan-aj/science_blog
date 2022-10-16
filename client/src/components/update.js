@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react"
 import axios from "axios"
 import React from "react";
+import { URL } from "./url";
 
 function Update() {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Update() {
     const [stepValue, setStepValue] = useState([{ step_no: "", step_image: "", step_description: "" }])
 
     React.useEffect(() => {
-        axios.post("http://localhost:9003/experimentOne", { id: id }).then((response) => {
+        axios.post(`${URL}/experimentOne`, { id: id }).then((response) => {
             // console.log(response.data)
             if (response.data) {
                 setData({ name: response.data.name, description: response.data.description, level: response.data.level, subject: response.data.subject, image: response.data.image, precautions: response.data.precautions })
@@ -80,7 +81,7 @@ function Update() {
         data.instructions = stepValue
         // console.log(data)
         if (name && description && level && subject && image && precautions) {
-            axios.post("http://localhost:9003/update", { data: data, id: id })
+            axios.post(`${URL}/update`, { data: data, id: id })
                 .then(res => {
                     alert(res.data.message)
                     navigate("/admin")
@@ -93,18 +94,18 @@ function Update() {
 
     return (
         <div className="bg-blue-50 w-full h-full min-h-screen">
-            <div className="text-3xl p-10 text-center inline-block font-bold">
+            <div className="text-3xl p-10 text-center md:inline-block font-bold">
                 Admin Portal
             </div>
-            <div className=" p-5 py-10 float-right">
+            <div className=" p-5 md:py-10 md:float-right flex justify-center">
                 <button
                     onClick={() => navigate("/admin")}
                     className=" mx-3 px-2 py-1 text-white text-lg bg-slate-700 hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 font-medium rounded-lg  text-center inline-flex items-center"
                 >Back</button>
             </div>
-            <div className="flex items-center justify-center ">
-                <div className="px-8 py-6 my-5 text-left bg-white shadow-lg w-2/4">
-                    <h3 className="text-2xl font-bold text-center">New experiment</h3>
+            <div className="flex items-center justify-center px-2 md:px-0">
+                <div className="px-8 py-6 my-5 text-left bg-white shadow-lg w-full md:w-2/4">
+                    <h3 className="text-2xl font-bold text-center">Update experiment</h3>
                     <div className="mt-4">
                         <form onSubmit={dataSubmit}>
                             <div className="mt-4">

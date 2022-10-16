@@ -2,13 +2,14 @@ import React from "react"
 import { useNavigate } from "react-router-dom";
 import Card from "./adminCard";
 import axios from "axios"
+import { URL } from "./url";
 
 function Admin(props) {
     const navigate = useNavigate();
     const [post, setPost] = React.useState([]);
     const [del, setDel] = React.useState(true);
     React.useEffect(() => {
-        axios.get("http://localhost:9003/experiment").then((response) => {
+        axios.get(`${URL}/experiment`).then((response) => {
             setPost(response.data);
         });
         setDel(true)

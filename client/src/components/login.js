@@ -1,6 +1,7 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { URL } from "./url";
 
 const Login = ({ setLoginid }) => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Login = ({ setLoginid }) => {
     const adminLogin = () => {
         const { name, password } = loginData
         if (name && password) {
-            axios.post("http://localhost:9003/login", loginData)
+            axios.post(`${URL}/login`, loginData)
                 .then(res => {
                     alert(res.data.message)
                     localStorage.setItem("loginId", res.data.user._id)
